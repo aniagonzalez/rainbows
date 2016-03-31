@@ -1,4 +1,5 @@
 require 'rainbow'
+require 'colorize'
 
 red = [255,0,0]
 green = [0,255,0]
@@ -32,23 +33,31 @@ puts "#{color_lookup[red]} #{red} + #{color_lookup[green]} #{green} = #{color_lo
 
 
 rainbow = [
-  {"red" => {r: 255, g: 0, b: 0}},
-  {"orange" => {r: 255, g: 127, b: 0}},
-  {"yellow" => {r: 255, g: 255, b: 0}},
-  {"green" => {r: 0, g: 255, b: 0}},
-  {"blue" => {r: 0, g: 0, b: 255}},
-  {"indigo" => {r: 75, g: 0, b: 130}},
-  {"violet" => {r: 143, g: 0, b: 255}},
+  {:red => {r: 255, g: 0, b: 0}},
+  {:orange => {r: 255, g: 127, b: 0}},
+  {:yellow => {r: 255, g: 255, b: 0}},
+  {:green => {r: 0, g: 255, b: 0}},
+  {:blue => {r: 0, g: 0, b: 255}},
+  {:indigo => {r: 75, g: 0, b: 130}},
+  {:violet => {r: 143, g: 0, b: 255}},
 ]
 
+# Using Colorize Gem but it doest not support all colors
 rainbow.length.times do |i|
-  color = rainbow[i].keys[0]
-  if color == "red" then puts Rainbow(color).red
-  elsif color == "orange" then puts Rainbow(color).orange
-  elsif color == "yellow" then puts Rainbow(color).yellow
-  elsif color == "green" then puts Rainbow(color).green
-  elsif color == "blue" then puts Rainbow(color).blue
-  elsif color == "indigo" then puts Rainbow(color).indigo
-  elsif color == "violet" then puts Rainbow(color).violet
-  end
+  color = rainbow[i].keys
+  color_s = color[0].to_s
+  puts color_s.colorize(color[0])
 end
+
+### Rainbow Gem does not accept a variable for the color so it wasn't efficient enough ###
+#rainbow.length.times do |i|
+#  color = rainbow[i].keys[0]
+#  if color == "red" then puts Rainbow(color).red
+#  elsif color == "orange" then puts Rainbow(color).orange
+#  elsif color == "yellow" then puts Rainbow(color).yellow
+#  elsif color == "green" then puts Rainbow(color).green
+#  elsif color == "blue" then puts Rainbow(color).blue
+#  elsif color == "indigo" then puts Rainbow(color).indigo
+#  elsif color == "violet" then puts Rainbow(color).violet
+#  end
+#end
